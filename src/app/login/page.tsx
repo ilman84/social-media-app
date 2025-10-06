@@ -68,7 +68,7 @@ export default function Login() {
                   json?.username ||
                   '';
                 if (uname) localStorage.setItem('username', uname);
-                toast.success('Login success');
+                sessionStorage.setItem('flash', 'login-success');
                 router.push('/');
               } catch (err: unknown) {
                 const message =

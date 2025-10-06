@@ -1,8 +1,20 @@
+'use client';
 import Navbar from '../components/Navbar';
 import Feed from '../components/Feed';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const f = sessionStorage.getItem('flash');
+      if (f === 'login-success') {
+        toast.success('Login success', { duration: 3000 });
+        sessionStorage.removeItem('flash');
+      }
+    }
+  }, []);
   return (
     <div className='main-container w-full max-w-[1440px] min-h-screen relative mx-auto my-0 flex justify-center'>
       {/* Inner content container */}

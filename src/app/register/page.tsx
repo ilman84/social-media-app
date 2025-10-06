@@ -76,7 +76,8 @@ export default function Register() {
                 }
                 const token: string | undefined = json?.data?.token;
                 if (token) localStorage.setItem('token', token);
-                toast.success('Registered successfully');
+                toast.success('Registered successfully', { duration: 3000 });
+                await new Promise((r) => setTimeout(r, 1500));
                 router.push('/login');
               } catch (err: unknown) {
                 const message =
