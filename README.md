@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sociality
+
+A modern social media app built with Next.js (App Router), TypeScript, Tailwind CSS, TanStack Query, and ShadCN/Sonner toasts. Mobile‑first UI with feed, likes, comments, saves, profiles, and modals.
+
+## Features
+
+- Feed with like, comment, share, and save
+- Accurate counts via API + optimistic updates
+- Comment & Likes modals (emoji picker, delete own comment)
+- User profiles (gallery, saved/liked tabs, followers/following modals)
+- Fixed top navbar + mobile search input, bottom nav on key pages
+- Avatar dropdown (Profile, Logout)
+- Add Post (upload image + caption) with toast feedback
+- Edit Profile (update profile + avatar) with toast feedback
+- Responsive (desktop and 393px mobile optimized)
+
+## Tech Stack
+
+- Next.js 15 • React • TypeScript
+- Tailwind CSS
+- TanStack Query (data fetching, mutations)
+- ShadCN UI + Sonner (toasts)
+- Deployed API (Railway): Sociality backend
 
 ## Getting Started
 
-First, run the development server:
+Prerequisites:
+
+- Node 18+ and npm (or pnpm/yarn/bun)
+
+Install and run dev server:
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build and start:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment
 
-## Learn More
+Auth tokens are stored in localStorage (`token`, `username`, `avatarUrl`). The app calls the hosted API; no extra `.env` is required for local development.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure (key paths)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app/` – App Router pages
+  - `page.tsx` – Home (feed)
+  - `users/[username]/page.tsx` – Public user profile
+  - `users/profile/page.tsx` – My profile
+  - `users/profile/edit/page.tsx` – Edit profile (with toasts)
+  - `posts/new/page.tsx` – Add post (with toasts)
+- `src/components/` – UI components
+  - `Navbar.tsx`, `Feed.tsx`, `CommentModal.tsx`, `LikesModal.tsx`, etc.
+- `src/lib/api.ts` – API client functions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Common Scripts
 
-## Deploy on Vercel
+```bash
+npm run dev       # start dev server
+npm run build     # production build
+npm run start     # start production server
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Favicon: `public/images/like-icon.svg`
+- Mobile navbar: search icon inside the field; background shim avoids white edges
+- Feed avatars/names are clickable → self: `/users/profile`, others: `/users/[username]`
+
+## License
+
+This project is for learning/demo purposes. Adapt as needed.
