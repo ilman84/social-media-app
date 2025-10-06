@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import ClientProviders from '@/components/ClientProviders';
+import FlashOnRoute from '@/components/FlashOnRoute';
 
 export const metadata: Metadata = {
   title: 'Sociality - Social Media App',
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ClientProviders>
           {children}
           <Toaster richColors closeButton position='top-center' />
+          <FlashOnRoute />
         </ClientProviders>
       </body>
     </html>
